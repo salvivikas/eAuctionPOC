@@ -1,0 +1,30 @@
+CREATE TABLE bids (
+  bidid int(11) NOT NULL auto_increment,
+  userid int(11) NOT NULL,
+  catalogid int(11) NOT NULL,
+  bidqty int(11) NOT NULL,
+  PRIMARY KEY  (bidid)
+) ENGINE=InnoDB AUTO_INCREMENT=591 DEFAULT CHARSET=latin1;
+
+CREATE TABLE catalogdetails (
+  catalogid int(11) NOT NULL,
+  lotno varchar(30) default NULL,
+  invoiceno varchar(30) default NULL,
+  mark varchar(30) default NULL,
+  teatype varchar(30) default NULL,
+  category varchar(30) default NULL,
+  grade varchar(30) default NULL,
+  baseprice double(10,2) default '0.00',
+  quantityoffered int(11) default '0',
+  PRIMARY KEY  (catalogid)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE usermaster (
+  id int(11) NOT NULL auto_increment,
+  userid varchar(30) default NULL,
+  userdisplayname varchar(50) default NULL,
+  password varchar(50) default NULL,
+  role int(11) default '0',
+  isactive tinyint(1) default '1',
+  PRIMARY KEY  (id)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
