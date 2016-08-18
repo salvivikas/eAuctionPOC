@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Catalog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>-->
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <script src="javascripts/components/jquery.min.js"></script>
+    <script src="javascripts/components/bootstrap.min.js"></script>
+    <script src="javascripts/components/angular.min.js"></script>
+    <script src="javascripts/components/smart-table.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="javascripts/ngApp.js"></script>
+</head>
+
+<body ng-app="myApp">
+    <div ng-controller="catalogController">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">eAuction</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"> {{userinfo.userdisplayname}}</a></li>
+                    <li><a href="#"> Log Out</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div>
+            <p><strong><span>{{message}} </span><span ng-show="sessionStarted">Active Lot Time Remaining : {{lotDuration}} Sec.</span></strong></p>
+            <p id='notification' ng-show="showNotification">{{notification}}</p>
+        </div>
+        <table class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Catalog Id</th>
+                    <th>Lot No</th>
+                    <th>Invoice No</th>
+                    <th>Mark</th>
+                    <th>Tea Type</th>
+                    <th>Category</th>
+                    <th>Grade</th>
+                    <th>Base Price</th>
+                    <th>Quantity Offered</th>
+                    <!--<th>Bid Price</th>-->
+                    <th>Bid Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="catalog in activeCatalogs">
+                    <td>{{catalog.catalogid}}</td>
+                    <td>{{catalog.lotno}}</td>
+                    <td>{{catalog.invoiceno}}</td>
+                    <td>{{catalog.mark}}</td>
+                    <td>{{catalog.teatype}}</td>
+                    <td>{{catalog.category}}</td>
+                    <td>{{catalog.grade}}</td>
+                    <td>{{catalog.baseprice}}</td>
+                    <td>{{catalog.quantityoffered}}</td>
+                    <!--<td><input class="form-control" id="price"></td>-->
+                    <td><input class="form-control" id="quantity" ng-model="catalog.bidqty"></td>
+                    <td><input type="button" class="btn btn-primary" value="Place Bid" ng-click="placeBid(catalog)"></td>
+                </tr>
+            </tbody>
+            <!--<tfoot>
+            <tr>
+                <td colspan="5" class="text-center">
+                    <div st-pagination="" st-items-by-page="10"></div>
+                </td>
+            </tr>
+        </tfoot>-->
+        </table>
+
+        <div>
+            <p><strong><span>Upcoming Lots</span></strong></p>
+        </div>
+        <table st-table="displayedCollection" st-safe-src="upcomingCatalogs" class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Catalog Id</th>
+                    <th>Lot No</th>
+                    <th>Invoice No</th>
+                    <th>Mark</th>
+                    <th>Tea Type</th>
+                    <th>Category</th>
+                    <th>Grade</th>
+                    <th>Base Price</th>
+                    <th>Quantity Offered</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="catalog in displayedCollection">
+                    <td>{{catalog.catalogid}}</td>
+                    <td>{{catalog.lotno}}</td>
+                    <td>{{catalog.invoiceno}}</td>
+                    <td>{{catalog.mark}}</td>
+                    <td>{{catalog.teatype}}</td>
+                    <td>{{catalog.category}}</td>
+                    <td>{{catalog.grade}}</td>
+                    <td>{{catalog.baseprice}}</td>
+                    <td>{{catalog.quantityoffered}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" class="text-center">
+                        <div st-pagination="" st-items-by-page="10"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</body>
+
+</html>

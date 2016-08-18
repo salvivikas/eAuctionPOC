@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>-->
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <script src="javascripts/components/jquery.min.js"></script>
+    <script src="javascripts/components/bootstrap.min.js"></script>
+    <script src="javascripts/components/angular.min.js"></script> 
+    <script src="javascripts/components/smart-table.min.js"></script>
+    <script src="javascripts/ngApp.js"></script>
+</head>
+
+<body ng-app="myApp">
+    <div ng-controller="loginController">
+        <form role="form" class="login-form">
+            <h2>Login</h2>
+            <div class="form-group">
+                <label for="username">User Name:</label>
+                <input class="form-control" id="username" ng-model="username">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd" ng-model="password">
+            </div>
+            <button type="submit" class="btn btn-default" ng-click="authenticate()">Login</button>
+        </form>
+    </div>
+</body>
+
+</html>
